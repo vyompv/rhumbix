@@ -1,0 +1,41 @@
+/**
+* Created by vyompv on 9/13/2016.
+*/
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="rhumbix">
+
+<h2>Rhumbix test</h2>
+
+<form ng-submit="search(url)">
+    <input type="text" ng-model="url" size="25" placeholder="Search Keyword">
+    <input type="submit" value="Go">
+    <div><img src="{{gifUrl}}"></div>
+</form>
+
+<br>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('rhumbix', function($scope) {
+        function geturl(theUrl,cb){
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+                xmlHttp.send( null );
+                cb(xmlHttp.responseText);
+        }
+        $scope.search=function(keyword){ console.log(keyword);
+            var url="http://api.giphy.com/v1/gifs/search?q="+keyword+"&api_key=dc6zaTOxFJmzC&limit=1";
+            console.log(url);
+            var response=geturl(url,function(res){
+                console.log(JSON.parse(res).data[0]);
+                $scope.gifUrl="https://media.giphy.com/media/"+JSON.parse(res).data[0].id+"/giphy.gif";
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
+
