@@ -39,7 +39,7 @@
                 cb(xmlHttp.responseText);
         }
         $scope.search=function(keyword){
-            var url="http://api.giphy.com/v1/gifs/search?q="+keyword+"&api_key=dc6zaTOxFJmzC&limit=1";
+            var url="https://api.giphy.com/v1/gifs/search?q="+keyword+"&api_key=dc6zaTOxFJmzC&limit=1";
             var response=geturl(url,function(res){
                 $scope.gifUrl="https://media.giphy.com/media/"+JSON.parse(res).data[0].id+"/giphy.gif";
             });
