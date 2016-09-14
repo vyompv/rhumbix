@@ -1,39 +1,51 @@
-/**
-* Created by vyompv on 9/13/2016.
-*/
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
 <body ng-app="myApp" ng-controller="rhumbix">
 
 <h2>Rhumbix test</h2>
 
-<form ng-submit="search(url)">
-    <input type="text" ng-model="url" size="25" placeholder="Search Keyword">
+<form ng-submit="search(query)">
+    <input type="text" ng-model="query" size="25" placeholder="Search Keyword">
+    <div class="dropDownList"  ng-repeat="item in itemsArray|filter:query">
+        <a href="#">{{item}}</a>
+    </div>
     <input type="submit" value="Go">
-    <div><img src="{{gifUrl}}"></div>
+    <div><img ng-src="{{gifUrl}}"></div>
 </form>
 
 <br>
 
 <script>
     var app = angular.module('myApp', []);
+//    app.directive("searchDisplay", function() {
+//        return {
+//            restrict: 'E',
+//            templateUrl: './searchdisplay.html',
+//            replace: true,
+//            scope: {
+//                itemsArray: "=",
+//                query:"="
+//            }
+//        }
+//    });
     app.controller('rhumbix', function($scope) {
+        $scope.itemsArray=["about","above","across"];
+//        $scope.query="cat";
         function geturl(theUrl,cb){
                 var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+                xmlHttp.open( "GET", theUrl, false );
                 xmlHttp.send( null );
                 cb(xmlHttp.responseText);
         }
-        $scope.search=function(keyword){ console.log(keyword);
+        $scope.search=function(keyword){
             var url="http://api.giphy.com/v1/gifs/search?q="+keyword+"&api_key=dc6zaTOxFJmzC&limit=1";
-            console.log(url);
             var response=geturl(url,function(res){
-                console.log(JSON.parse(res).data[0]);
                 $scope.gifUrl="https://media.giphy.com/media/"+JSON.parse(res).data[0].id+"/giphy.gif";
             });
         }
     });
+
 </script>
 
 </body>
