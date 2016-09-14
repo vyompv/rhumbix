@@ -1,5 +1,6 @@
 .dropDownList {
     background-color:Ivory;
     box-shadow: 10px 10px  #888888;	
-	font-size:1.02em;
+    font-size:1.02em;
+    width: 190px;
 }
