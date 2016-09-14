@@ -18,20 +18,8 @@
 
 <script>
     var app = angular.module('myApp', []);
-//    app.directive("searchDisplay", function() {
-//        return {
-//            restrict: 'E',
-//            templateUrl: './searchdisplay.html',
-//            replace: true,
-//            scope: {
-//                itemsArray: "=",
-//                query:"="
-//            }
-//        }
-//    });
     app.controller('rhumbix', function($scope) {
         $scope.itemsArray=["about","above","across"];
-//        $scope.query="cat";
         function geturl(theUrl,cb){
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.open( "GET", theUrl, false );
