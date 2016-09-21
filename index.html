@@ -7,7 +7,7 @@
 <h2>A simple Suggestion box and image fetcher</h2>
 
 <form ng-submit="search(query)">
-    <input type="text" ng-model="query" size="25" placeholder="Search Keyword">
+    <input type="text" ng-model="query" size="25" placeholder="Type any word">
     <div class="dropDownList"  ng-repeat="item in itemsArray|filter:query">
         <a href="#">{{item}}</a>
     </div>
