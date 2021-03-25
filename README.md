@@ -1,2 +1,2 @@
 # rhumbix
-Hosted at https://vyompvscu.github.io/rhumbix/
+Hosted at https://vyompv.github.io/rhumbix/
